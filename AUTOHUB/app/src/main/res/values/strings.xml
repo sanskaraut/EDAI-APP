@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">AutoHub</string>
-    <string name="select">Documents</string>
-
-    <string name="un_text"><u>Upload your document</u></string>
-    <string name="un_text2"><u>Tap here if you are in danger</u></string>
-    <string name="welcome">Welcome!</string>
-
-</resources>
