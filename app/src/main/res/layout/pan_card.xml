@@ -76,7 +76,6 @@
         android:id="@+id/button6"
         android:layout_width="375dp"
         android:layout_height="75dp"
-        android:background="@drawable/edit_shape"
         android:backgroundTint="#0F8BE1"
         android:gravity="center"
         android:text="Continue"
