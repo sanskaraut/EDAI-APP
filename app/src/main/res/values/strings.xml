@@ -17,5 +17,6 @@
     <string name="mobile_no">Mobile no.</string>
     <string name="username">Username</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="_300" />
 
 </resources>
