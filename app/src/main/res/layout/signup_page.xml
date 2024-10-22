@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#82B2DB"
     android:backgroundTint="#82B2DB">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/signUp_TextView"
@@ -142,19 +146,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/passwordSignUp_EditText" />
 
-    <Button
-        android:id="@+id/signUp_button"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#0F8BE1"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="@string/signup"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmPasswordSignUp_EditText" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/signUp_button"
+            android:layout_width="375dp"
+            android:layout_height="86dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="#0F8BE1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/signup"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirmPasswordSignUp_EditText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
