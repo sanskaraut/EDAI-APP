@@ -129,7 +129,7 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/expenseManager"
         android:layout_width="164dp"
         android:layout_height="146dp"
         android:background="#82B2DB"
