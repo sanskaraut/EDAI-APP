@@ -147,7 +147,6 @@
         android:layout_width="360dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/edit_shape"
         android:backgroundTint="#0F8BE1"
         android:gravity="center"
         android:padding="20dp"
