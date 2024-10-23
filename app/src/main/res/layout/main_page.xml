@@ -26,9 +26,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageButton
+        android:id="@+id/expenseManager"
+        android:layout_width="164dp"
+        android:layout_height="146dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.244"
+        app:srcCompat="@drawable/car_expense" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/washingCenter"
         android:layout_width="164dp"
         android:layout_height="146dp"
         android:contentDescription="Go to Washing"
@@ -42,24 +54,23 @@
         app:srcCompat="@drawable/car_wash" />
 
     <TextView
-        android:id="@+id/textView37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="516dp"
+        android:id="@+id/expenseText"
+        android:layout_width="86dp"
+        android:layout_height="29dp"
         android:gravity="center"
         android:text="Expense"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toBottomOf="@+id/washingCenter"
+        app:layout_constraintVertical_bias="0.016" />
 
     <TextView
-        android:id="@+id/textView38"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/washingText"
+        android:layout_width="85dp"
+        android:layout_height="28dp"
         android:gravity="center"
         android:text="Washing"
         android:textSize="20sp"
@@ -67,11 +78,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
+        app:layout_constraintTop_toBottomOf="@+id/washingCenter"
         app:layout_constraintVertical_bias="0.018" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/moreUtilitiesToAddText"
         android:layout_width="250dp"
         android:layout_height="41dp"
         android:layout_marginTop="76dp"
