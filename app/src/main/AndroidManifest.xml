@@ -26,6 +26,8 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".ExpenseActivity" />
         <activity android:name=".WashingCenterActivity" />
+        <activity android:name=".WashingPage" />
+        <activity android:name=".WashingCenterDetailActivity" />
 
 
     </application>
