@@ -26,18 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="164dp"
-        android:layout_height="146dp"
-        android:contentDescription="Expense Manager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244"
-        app:srcCompat="@drawable/car_expense" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -47,6 +35,7 @@
         app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView27"
         app:layout_constraintVertical_bias="0.244"
@@ -101,6 +90,8 @@
         android:layout_height="146dp"
         android:background="#FEFEFE"
         android:contentDescription="add utilities"
+        android:text=""
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -137,6 +128,23 @@
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="58dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="164dp"
+        android:layout_height="146dp"
+        android:background="#82B2DB"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.244"
+        app:srcCompat="@drawable/car_expense"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
