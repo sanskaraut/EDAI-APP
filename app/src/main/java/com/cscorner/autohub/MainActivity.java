@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 // Intent to go to ExpenseActivity
                 Intent intent = new Intent(MainActivity.this, ExpenseActivity.class);
                 startActivity(intent);
+                    }
+                });
                 goToWashingPage = findViewById(R.id.washingCenter);
 
                 goToWashingPage.setOnClickListener(new View.OnClickListener() {
@@ -35,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent goToWashingPage = new Intent(MainActivity.this, WashingPage.class);
                         startActivity(goToWashingPage);
 
-                    }
-                });
             }
         });
     }

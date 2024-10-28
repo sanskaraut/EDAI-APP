@@ -20,4 +20,6 @@
     <string name="_300">₹300</string>
     <string name="more_utilities_to_add">More utilities to add...</string>
     <string name="add_utilities">add utilities</string>
+    <string name="go_to_washing">Go to Washing</string>
+    <string name="autohub">AutoHub</string>
 </resources>
