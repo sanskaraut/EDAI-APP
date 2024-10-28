@@ -16,14 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page); // Linking main_page.xml
 
-        goToWashingPage = findViewById(R.id.imageButton5);
-
-        goToWashingPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToWashingPage = new Intent(MainActivity.this , WashingPage.class);
-                startActivity(goToWashingPage);
-
         // Get reference to the ImageButton for expenseManager
         ImageButton expenseManagerButton = findViewById(R.id.expenseManager);
 
@@ -34,7 +26,18 @@ public class MainActivity extends AppCompatActivity {
                 // Intent to go to ExpenseActivity
                 Intent intent = new Intent(MainActivity.this, ExpenseActivity.class);
                 startActivity(intent);
+                    }
+                });
+                goToWashingPage = findViewById(R.id.washingCenter);
+
+                goToWashingPage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent goToWashingPage = new Intent(MainActivity.this, WashingPage.class);
+                        startActivity(goToWashingPage);
+
             }
         });
     }
 }
+

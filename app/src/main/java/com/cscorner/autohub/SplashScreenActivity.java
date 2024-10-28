@@ -16,14 +16,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.splashscreen);
 
         // Delay and navigate to LoginActivity
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Intent to navigate to LoginActivity
-                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish(); // Close the splash screen so that users cannot return to it
-            }
+        new Handler().postDelayed(() -> {
+            // Intent to navigate to LoginActivity
+            Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Close the splash screen so that users cannot return to it
         }, SPLASH_SCREEN_TIME_OUT);
     }
 }

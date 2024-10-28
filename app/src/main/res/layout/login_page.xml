@@ -67,7 +67,9 @@
         android:text="@string/don_t_have_an_account"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signUp_Button_Textview"
+        app:layout_constraintEnd_toEndOf="@+id/signUp_Button_Textview"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_Button"
         app:layout_constraintVertical_bias="0.082" />
 

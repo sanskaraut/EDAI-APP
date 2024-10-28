@@ -14,10 +14,10 @@
         android:background="#FF5DAAE3"
         android:backgroundTint="#FF5DAAE3"
         android:gravity="center"
-        android:paddingLeft="30dp"
-        android:text="AutoHub"
+        android:paddingStart="30dp"
+        android:text="@string/autohub"
         android:textColor="#090909"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,24 +27,12 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/expenseManager"
-        android:layout_width="164dp"
-        android:layout_height="146dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244"
-        app:srcCompat="@drawable/car_expense" />
-
-    <ImageButton
         android:id="@+id/washingCenter"
         android:layout_width="164dp"
         android:layout_height="146dp"
-        android:contentDescription="Go to Washing"
-        app:layout_constraintHorizontal_bias="0.886"
+        android:scaleType="fitCenter"
+        android:background="#82B2DB"
+        android:contentDescription="@string/go_to_washing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
@@ -86,7 +74,7 @@
         android:layout_width="250dp"
         android:layout_height="41dp"
         android:layout_marginTop="76dp"
-        android:text="More utilities to add..."
+        android:text="@string/more_utilities_to_add"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +88,7 @@
         android:layout_width="120dp"
         android:layout_height="146dp"
         android:background="#FEFEFE"
-        android:contentDescription="add utilities"
+        android:contentDescription="@string/add_utilities"
         android:text=""
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -141,7 +129,7 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/expenseManager"
         android:layout_width="164dp"
         android:layout_height="146dp"
         android:background="#82B2DB"
