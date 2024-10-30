@@ -106,7 +106,7 @@ public class DrivingLicenseActivity extends AppCompatActivity {
     }
 
     private void saveDrivingLicenseInfoToFirestore(String drivingLicenseNumber, String imageUrl) {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid() ;
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db.collection("users").document(userId)
                 .update("drivingLicenseNumber", drivingLicenseNumber, "drivingLicenseImage", imageUrl)
@@ -115,10 +115,15 @@ public class DrivingLicenseActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(DrivingLicenseActivity.this, "Driving License info saved", Toast.LENGTH_SHORT).show();
+                            // Start DocumentationActivity and finish this activity
+                            Intent intent = new Intent(DrivingLicenseActivity.this, DocumentationActivity.class);
+                            startActivity(intent);
+                            finish(); // Close this activity
                         } else {
                             Toast.makeText(DrivingLicenseActivity.this, "Error saving info", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
 }
