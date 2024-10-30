@@ -8,6 +8,18 @@
     android:backgroundTint="#82B2DB">
 
     <TextView
+        android:id="@+id/enterDrivingLicenceNumber_textview"
+        android:layout_width="375dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="140dp"
+        android:gravity="center"
+        android:text="Enter your DL Number"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drivingLicencePreview" />
+
+    <TextView
         android:id="@+id/textView14"
         android:layout_width="375dp"
         android:layout_height="wrap_content"
@@ -33,43 +45,41 @@
         app:layout_constraintVertical_bias="0.016" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="375dp"
-        android:layout_height="198dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/drivingLicencePreview"
+        android:layout_width="272dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.073"
         tools:srcCompat="@drawable/driving_licence" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="375dp"
+        android:id="@+id/uploadYourDocument"
+        android:layout_width="255dp"
         android:layout_height="35dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/un_text"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintTop_toBottomOf="@+id/drivingLicencePreview" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/continue_button"
         android:layout_width="375dp"
         android:layout_height="75dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#0F8BE1"
         android:gravity="center"
         android:text="Continue"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintTop_toBottomOf="@+id/enterDrivingLicenceNumber_textview" />
 
     <TextView
         android:id="@+id/textView23"
@@ -89,4 +99,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/drivingLicenceNumber"
+        android:layout_width="352dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/enter_driving_licence_number"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadYourDocument" />
 </androidx.constraintlayout.widget.ConstraintLayout>

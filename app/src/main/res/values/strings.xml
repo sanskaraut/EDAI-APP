@@ -24,4 +24,12 @@
     <string name="add_utilities">add utilities</string>
     <string name="go_to_washing">Go to Washing</string>
     <string name="autohub">AutoHub</string>
+    <string name="welcome_anisha">Welcome Anisha</string>
+    <string name="here_s_what_you_need_to_do_set_up_your_account">Here\'s what you need to do set up your account</string>
+    <string name="driving_licence">Driving Licence</string>
+    <string name="aadhaar_card">Aadhaar Card</string>
+    <string name="pan_card">Pan Card</string>
+    <string name="rc_details">RC Details</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="enter_driving_licence_number">Enter Driving Licence number</string>
 </resources>

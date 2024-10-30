@@ -2,6 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
 
     <application
         android:allowBackup="true"
@@ -31,6 +34,14 @@
         <activity android:name=".WashingCenterActivity" />
         <activity android:name=".WashingPage" />
         <activity android:name=".WashingCenterDetailActivity" />
+        <activity android:name=".DocumentVerificationActivity" />
+        <activity android:name=".DocumentationActivity" />
+        <activity android:name=".AADHARCardActivity"/>
+        <activity android:name=".RCDetailsActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".PANCardActivity"/>
+        <activity android:name=".DrivingLicenseActivity"/>
+
     </application>
 
 </manifest>
