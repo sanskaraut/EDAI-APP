@@ -12,6 +12,12 @@ public class User {
     private String panCardImage;
     private String panCardNumber;
     private String profilePhoto;
+    private Integer fuelExpense;
+    private Integer tollFineExpense;
+    private Integer maintenanceExpense;
+    private Integer miscellaneousExpense;
+    private Integer totalCurrentMonthExpense;
+    private Integer totalExpense;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
@@ -30,6 +36,12 @@ public class User {
         this.panCardImage = null;
         this.panCardNumber = null;
         this.profilePhoto = null;
+        this.fuelExpense = 0;
+        this.tollFineExpense = 0;
+        this.maintenanceExpense = 0;
+        this.miscellaneousExpense = 0;
+        this.totalCurrentMonthExpense = 0;
+        this.totalExpense = 0;
     }
 
     // Getters and Setters for all fields
@@ -119,5 +131,45 @@ public class User {
 
     public void setProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
+    }
+    public Integer getFuelExpense() {
+        return fuelExpense;
+    }
+
+    public void setFuelExpense(Integer fuelExpense) {
+        this.fuelExpense += fuelExpense;
+    }
+    public Integer getTollFineExpense() {
+        return tollFineExpense;
+    }
+
+    public void setTollFineExpense(Integer tollFineExpense) {
+        this.tollFineExpense += tollFineExpense;
+    }
+    public Integer getMaintenanceExpense() {
+        return maintenanceExpense;
+    }
+
+    public void setMaintenanceExpense(Integer maintenanceExpense) {
+        this.maintenanceExpense += maintenanceExpense;
+    }
+    public Integer getMiscellaneousExpense() {
+        return miscellaneousExpense;
+    }
+
+    public void setMiscellaneousExpense(Integer miscellaneousExpense) {
+        this.miscellaneousExpense += miscellaneousExpense;
+    }
+    public Integer getTotalCurrentMonthExpense() {
+        return totalCurrentMonthExpense;
+    }
+    public void setTotalCurrentMonthExpense(Integer totalCurrentMonthExpense) {
+        this.totalCurrentMonthExpense += totalCurrentMonthExpense;
+    }
+    public Integer getTotalExpense() {
+        return totalExpense;
+    }
+    public void setTotalExpense(Integer totalExpense) {
+        this.totalExpense += totalExpense;
     }
 }

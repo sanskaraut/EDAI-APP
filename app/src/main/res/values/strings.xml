@@ -32,4 +32,20 @@
     <string name="rc_details">RC Details</string>
     <string name="profile_photo">Profile Photo</string>
     <string name="enter_driving_licence_number">Enter Driving Licence number</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="current_month_expense">Current month expense</string>
+    <string name="_1500">₹1500</string>
+    <string name="fuel">Fuel</string>
+    <string name="maintenance">Maintenance</string>
+    <string name="toll_fine">Toll / Fine</string>
+    <string name="view_all_expense">View All Expense</string>
+    <string name="back_button">Back Button</string>
+    <string name="total_expense">Total expense</string>
+    <string name="add">ADD</string>
+    <string name="enter_the_amount">Enter the amount</string>
+    <string name="add_expense">ADD EXPENSE</string>
+    <string name="refetch_amount_from_database">Refetch amount from database</string>
+    <string name="expensemanagerbutton">Expense Manager Button</string>
+    <string name="washing">Washing</string>
+    <string name="expense">Expense</string>
 </resources>
