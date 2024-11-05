@@ -48,4 +48,5 @@
     <string name="expensemanagerbutton">Expense Manager Button</string>
     <string name="washing">Washing</string>
     <string name="expense">Expense</string>
+    <string name="Washing_center_name" />
 </resources>
