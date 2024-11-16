@@ -49,4 +49,5 @@
     <string name="washing">Washing</string>
     <string name="expense">Expense</string>
     <string name="Washing_center_name" />
+    <string name="login_owner">Login(Owner)</string>
 </resources>

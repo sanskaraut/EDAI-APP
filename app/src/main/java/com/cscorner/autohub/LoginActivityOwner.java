@@ -16,70 +16,70 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivityOwner extends AppCompatActivity {
 
-    private EditText emailEditText, passwordEditText;
-
-    // Firebase Authentication and Firestore instances
+    private EditText enterEmail, enterPassword;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.owner_login); // use the same layout as loginActivity, just different logic
 
         // Initialize FirebaseAuth and Firestore
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         // Find the fields by their IDs
-        emailEditText = findViewById(R.id.enterEmailLogin);
-        passwordEditText = findViewById(R.id.enterPasswordLogin);
-        Button loginButton = findViewById(R.id.login_Button);
-        TextView signupTextView = findViewById(R.id.signUp_Button_Textview);
-        TextView areYouAOwner = findViewById(R.id.areYouAOwner);
+        enterEmail = findViewById(R.id.enterEmailLogin);
+        enterPassword = findViewById(R.id.enterPasswordLogin);
+        Button loginBtn = findViewById(R.id.login_Button);
+        TextView signupBtn = findViewById(R.id.signUp_Button_Textview);
+        TextView areYouAUser = findViewById(R.id.areYouAUser);
 
         // Set onClickListener for the Login button
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser();
+                loginOwner();
             }
         });
 
         // Set onClickListener for the Signup TextView
-        signupTextView.setOnClickListener(new View.OnClickListener() {
+        signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to SignupActivity for Users
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                // Navigate to SignupActivity for Owners
+                Intent intent = new Intent(LoginActivityOwner.this, SignupActivityOwner.class);
                 startActivity(intent);
             }
         });
-        areYouAOwner.setOnClickListener(new View.OnClickListener() {
+
+        // Set onClickListener for the "Are you a User?" TextView
+        areYouAUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to SignupActivity for Users
-                Intent intent = new Intent(LoginActivity.this, LoginActivityOwner.class);
+                // Navigate back to User Login
+                Intent intent = new Intent(LoginActivityOwner.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    // Function to handle user login
-    private void loginUser() {
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+    // Function to handle owner login
+    private void loginOwner() {
+        String email = enterEmail.getText().toString().trim();
+        String password = enterPassword.getText().toString().trim();
 
         // Simple validation
         if (TextUtils.isEmpty(email)) {
-            emailEditText.setError("Please enter email");
+            enterEmail.setError("Please enter email");
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            passwordEditText.setError("Please enter password");
+            enterPassword.setError("Please enter password");
             return;
         }
 
@@ -87,37 +87,37 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Check user role in Firestore
+                        // Check if the user is an owner
                         String userId = firebaseAuth.getCurrentUser().getUid();
-                        firestore.collection("users").document(userId)
+                        firestore.collection("WashingCenterOwners").document(userId)
                                 .get()
                                 .addOnCompleteListener(roleTask -> {
                                     if (roleTask.isSuccessful()) {
                                         DocumentSnapshot document = roleTask.getResult();
                                         if (document.exists()) {
                                             String role = document.getString("role");
-                                            if ("user".equals(role)) {
-                                                // Role matches, navigate to User Dashboard
-                                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            if ("owner".equals(role)) {
+                                                // Role matches, navigate to Owner Dashboard
+                                                Toast.makeText(LoginActivityOwner.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(LoginActivityOwner.this, MainActivityOwner.class);
                                                 startActivity(intent);
                                                 finish();
                                             } else {
                                                 // Role mismatch
                                                 firebaseAuth.signOut();
-                                                Toast.makeText(LoginActivity.this, "Access denied: You are not a user", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(LoginActivityOwner.this, "Access denied: You are not an owner", Toast.LENGTH_LONG).show();
                                             }
                                         } else {
                                             firebaseAuth.signOut();
-                                            Toast.makeText(LoginActivity.this, "User data not found", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(LoginActivityOwner.this, "User data not found", Toast.LENGTH_LONG).show();
                                         }
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "Error checking user role", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivityOwner.this, "Error checking user role", Toast.LENGTH_LONG).show();
                                     }
                                 });
                     } else {
                         // Login failed
-                        Toast.makeText(LoginActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivityOwner.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

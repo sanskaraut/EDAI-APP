@@ -41,6 +41,11 @@
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".PANCardActivity"/>
         <activity android:name=".DrivingLicenseActivity"/>
+        <activity android:name=".LoginActivityOwner"/>
+        <activity android:name=".MainActivityOwner"/>
+        <activity android:name=".SignupActivityOwner"/>
+        <activity android:name=".ExpenseActivityOwner"/>
+        <activity android:name=".WashingPageOwner"/>
 
     </application>
 

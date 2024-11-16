@@ -1,5 +1,8 @@
 package com.cscorner.autohub;
 
+import android.widget.Button;
+import android.widget.EditText;
+
 public class User {
     private String name;
     private String email;
@@ -18,12 +21,13 @@ public class User {
     private Integer miscellaneousExpense;
     private Integer totalCurrentMonthExpense;
     private Integer totalExpense;
+    private String role;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String name, String username, String mobileNo, String email) {
+    public User(String name, String username, String mobileNo, String email,String role) {
         this.name = name;
         this.email = email;
         this.username = username;
@@ -42,6 +46,7 @@ public class User {
         this.miscellaneousExpense = 0;
         this.totalCurrentMonthExpense = 0;
         this.totalExpense = 0;
+        this.role = "user";
     }
 
     // Getters and Setters for all fields
@@ -172,4 +177,15 @@ public class User {
     public void setTotalExpense(Integer totalExpense) {
         this.totalExpense += totalExpense;
     }
+    public void setRole(String role) {
+        if (role.equals("user") || role.equals("owner")) {
+            this.role = role;
+        } else {
+            throw new IllegalArgumentException("Invalid role. Allowed values are 'user' or 'owner'.");
+        }
+    }
+    public String getRole() {
+        return role;
+    }
+
 }

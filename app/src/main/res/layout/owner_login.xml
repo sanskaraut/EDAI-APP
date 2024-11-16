@@ -94,7 +94,7 @@
         android:layout_width="360dp"
         android:layout_height="71dp"
         android:gravity="center"
-        android:text="@string/login"
+        android:text="@string/login_owner"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,5 +102,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.162" />
+
+    <TextView
+        android:id="@+id/areYouAUser"
+        android:layout_width="258dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="175dp"
+        android:text="Are you a User?"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dontHaveAnAccount_Text"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

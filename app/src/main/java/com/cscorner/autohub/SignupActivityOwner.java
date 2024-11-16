@@ -22,7 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivityOwner extends AppCompatActivity {
 
     private FirebaseAuth mAuth; // Firebase authentication instance
     private FirebaseFirestore db; // Firestore instance
@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_page); // Linking to the signup_page.xml layout
+        setContentView(R.layout.owner_signup); // Linking to the owner_signup.xml layout
 
         // Initialize Firebase Auth and Firestore
         mAuth = FirebaseAuth.getInstance();
@@ -49,7 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Retrieve user input
+                // Retrieve owner input
                 String name = nameEditText.getText().toString().trim();
                 String mobileNo = mobileNoEditText.getText().toString().trim();
                 String email = emailEditText.getText().toString().trim();
@@ -60,51 +60,51 @@ public class SignupActivity extends AppCompatActivity {
                 // Simple validation
                 if (name.isEmpty() || mobileNo.isEmpty() || email.isEmpty() || username.isEmpty() ||
                         password.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivityOwner.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(SignupActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivityOwner.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 } else {
                     // Check for existing user info
-                    checkExistingUser(email, username, mobileNo, password, name);
+                    checkExistingOwner(email, username, mobileNo, password, name);
                 }
             }
         });
     }
 
-    // Function to check for existing user info (email, username, mobileNo)
-    private void checkExistingUser(String email, String username, String mobileNo, String password, String name) {
+    // Function to check for existing owner info (email, username, mobileNo)
+    private void checkExistingOwner(String email, String username, String mobileNo, String password, String name) {
         // Check if email exists
-        db.collection("users")
+        db.collection("owners")
                 .whereEqualTo("email", email)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                            Toast.makeText(SignupActivity.this, "Email already in use", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivityOwner.this, "Email already in use", Toast.LENGTH_SHORT).show();
                         } else {
                             // If email doesn't exist, check username
-                            db.collection("users")
+                            db.collection("owners")
                                     .whereEqualTo("username", username)
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                             if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                                Toast.makeText(SignupActivity.this, "Username already in use", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignupActivityOwner.this, "Username already in use", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 // If username doesn't exist, check mobile number
-                                                db.collection("users")
+                                                db.collection("WashingCenterOwner")
                                                         .whereEqualTo("mobileNo", mobileNo)
                                                         .get()
                                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                                 if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                                                                    Toast.makeText(SignupActivity.this, "Mobile number already in use", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(SignupActivityOwner.this, "Mobile number already in use", Toast.LENGTH_SHORT).show();
                                                                 } else {
                                                                     // All checks passed, proceed with registration
-                                                                    registerUser(email, password, username, mobileNo, name);
+                                                                    registerOwner(email, password, username, mobileNo, name);
                                                                 }
                                                             }
                                                         });
@@ -116,66 +116,48 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-    // Function to register a user in Firebase
-    private void registerUser(String email, String password, String username, String mobileNo, String name) {
+    // Function to register an owner in Firebase
+    private void registerOwner(String email, String password, String username, String mobileNo, String name) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // User registration success, save to Firestore
-                            String userId = mAuth.getCurrentUser().getUid(); // Get user ID
-                            saveUserToFirestore(userId, name, username, mobileNo, email);
+                            // Owner registration success, save to Firestore
+                            String ownerId = mAuth.getCurrentUser().getUid(); // Get owner ID
+                            saveOwnerToFirestore(ownerId, name, username, mobileNo, email);
                         } else {
                             // If registration fails, display a message to the user.
-                            Toast.makeText(SignupActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivityOwner.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    // Function to save user data to Firestore
-    private void saveUserToFirestore(String userId, String name, String username, String mobileNo, String email) {
-        // Create a User object with default role "user"
-        String role = determineUserRole(username);  // Determine the role based on username or other criteria
-        User user = new User(name, username, mobileNo, email, role);
+    // Function to save owner data to Firestore
+    private void saveOwnerToFirestore(String ownerId, String name, String username, String mobileNo, String email) {
+        Map<String, Object> owner = new HashMap<>();
+        owner.put("name", name);
+        owner.put("username", username);
+        owner.put("mobileNo", mobileNo);
+        owner.put("email", email);
+        owner.put("role", "owner");  // Set role to "owner" for owners
 
-        // Save the User object to Firestore under the user's unique ID
-        db.collection("users").document(userId).set(user)
-                .addOnSuccessListener(aVoid -> {
-                    // Perform additional setup for new users
-                    initializeUserSettings(userId);
-
-                    // Notify user of success and proceed to next activity
-                    Toast.makeText(SignupActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, DocumentVerificationActivity.class);
-                    startActivity(intent);
-                    finish(); // Close SignupActivity
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(SignupActivity.this, "Error saving user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        // Save the owner details to the "owners" collection in Firestore
+        db.collection("WashingCenterOwners").document(ownerId)
+                .set(owner)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Redirect to the owner dashboard or another activity after successful registration
+                            Intent intent = new Intent(SignupActivityOwner.this, MainActivityOwner.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(SignupActivityOwner.this, "Failed to save owner details", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 });
-    }
-
-    // Function to determine user role
-    private String determineUserRole(String username) {
-        // Example: Assign "owner" role if username contains 'admin', else "user"
-        if (username.contains("admin")) {
-            return "owner";
-        } else {
-            return "user";
-        }
-    }
-
-    // Additional Function to Initialize User Settings
-    private void initializeUserSettings(String userId) {
-        // Example: Add an empty expense tracker for the user
-        Map<String, Object> expenseData = new HashMap<>();
-        expenseData.put("fuelExpense", 0);
-        expenseData.put("tollFineExpense", 0);
-        expenseData.put("maintenanceExpense", 0);
-        expenseData.put("miscellaneousExpense", 0);
-        expenseData.put("totalCurrentMonthExpense", 0);
-        expenseData.put("totalExpense", 0);
     }
 }
