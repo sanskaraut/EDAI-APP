@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,11 +18,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
+
 public class ExpenseActivity extends AppCompatActivity {
 
     private ImageView addImage;
     private TextView fuelExpenseView, tollFineExpenseView, maintenanceExpenseView, miscellaneousExpenseView, totalExpenseView, currentMonthExpenseView;
-    private ImageButton refetchButton; // Button for refetching data
+    private ImageButton refetchButton;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private DocumentReference userRef;
@@ -44,9 +45,8 @@ public class ExpenseActivity extends AppCompatActivity {
         miscellaneousExpenseView = findViewById(R.id.miscellaneousAmount);
         totalExpenseView = findViewById(R.id.totalExpenseAmount);
         currentMonthExpenseView = findViewById(R.id.currentMonthExpenseAmount);
-        refetchButton = findViewById(R.id.refetchDataFromDatabase); // Initialize refetch button
+        refetchButton = findViewById(R.id.refetchDataFromDatabase);
 
-        // Check if user is logged in and fetch the email
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String email = currentUser.getEmail();
@@ -56,8 +56,6 @@ public class ExpenseActivity extends AppCompatActivity {
         }
 
         addImage.setOnClickListener(v -> openAddExpenseDialog());
-
-        // Set the click listener for the refetch button
         refetchButton.setOnClickListener(v -> fetchExpenseData());
     }
 
@@ -82,24 +80,22 @@ public class ExpenseActivity extends AppCompatActivity {
         if (userRef != null) {
             userRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
+                    checkAndResetMonthlyExpenses(documentSnapshot);
+
                     int fuelExpense = documentSnapshot.contains("fuelExpense") ? documentSnapshot.getLong("fuelExpense").intValue() : 0;
                     int tollFineExpense = documentSnapshot.contains("tollFineExpense") ? documentSnapshot.getLong("tollFineExpense").intValue() : 0;
                     int maintenanceExpense = documentSnapshot.contains("maintenanceExpense") ? documentSnapshot.getLong("maintenanceExpense").intValue() : 0;
                     int miscExpense = documentSnapshot.contains("miscellaneousExpense") ? documentSnapshot.getLong("miscellaneousExpense").intValue() : 0;
 
-                    // Calculate total expense
                     int totalExpense = fuelExpense + tollFineExpense + maintenanceExpense + miscExpense;
-
-                    // Get the total expense from Firestore
                     int totalExpenseFromFirestore = documentSnapshot.contains("totalExpense") ? documentSnapshot.getLong("totalExpense").intValue() : 0;
 
-                    // Set values to TextViews
                     fuelExpenseView.setText(String.valueOf(fuelExpense));
                     tollFineExpenseView.setText(String.valueOf(tollFineExpense));
                     maintenanceExpenseView.setText(String.valueOf(maintenanceExpense));
                     miscellaneousExpenseView.setText(String.valueOf(miscExpense));
-                    totalExpenseView.setText(String.valueOf(totalExpenseFromFirestore)); // Display total expense from Firestore
-                    currentMonthExpenseView.setText(String.valueOf(totalExpense)); // Display total of individual expenses
+                    totalExpenseView.setText(String.valueOf(totalExpenseFromFirestore));
+                    currentMonthExpenseView.setText(String.valueOf(totalExpense));
                 } else {
                     Toast.makeText(this, "Document does not exist", Toast.LENGTH_SHORT).show();
                 }
@@ -109,6 +105,25 @@ public class ExpenseActivity extends AppCompatActivity {
             });
         } else {
             Toast.makeText(this, "User document not initialized", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkAndResetMonthlyExpenses(DocumentSnapshot documentSnapshot) {
+        Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH);
+
+        // Get the last updated month from Firestore
+        int lastUpdatedMonth = documentSnapshot.contains("lastUpdatedMonth") ? documentSnapshot.getLong("lastUpdatedMonth").intValue() : -1;
+
+        if (currentMonth != lastUpdatedMonth) {
+            // Reset expenses
+            userRef.update("fuelExpense", 0,
+                            "tollFineExpense", 0,
+                            "maintenanceExpense", 0,
+                            "miscellaneousExpense", 0,
+                            "lastUpdatedMonth", currentMonth)
+                    .addOnSuccessListener(aVoid -> Log.d("ExpenseActivity", "Monthly expenses reset successfully"))
+                    .addOnFailureListener(e -> Log.e("ExpenseActivity", "Failed to reset monthly expenses", e));
         }
     }
 
@@ -170,8 +185,17 @@ public class ExpenseActivity extends AppCompatActivity {
 
                 userRef.update(finalFieldToUpdate, updatedExpense)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Expense updated successfully", Toast.LENGTH_SHORT).show();
-                            fetchExpenseData(); // Refresh data after update
+                            int totalExpense = (documentSnapshot.contains("totalExpense") ? documentSnapshot.getLong("totalExpense").intValue() : 0) + amount;
+
+                            userRef.update("totalExpense", totalExpense)
+                                    .addOnSuccessListener(aVoid2 -> {
+                                        Toast.makeText(this, "Expense and total updated successfully", Toast.LENGTH_SHORT).show();
+                                        fetchExpenseData();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("ExpenseActivity", "Failed to update total expense", e);
+                                        Toast.makeText(this, "Failed to update total expense: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    });
                         })
                         .addOnFailureListener(e -> {
                             Log.e("ExpenseActivity", "Failed to update expense", e);

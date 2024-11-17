@@ -24,7 +24,7 @@ public class WashingPage extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent toWashingCentre ;
-                toWashingCentre = new Intent(WashingPage.this , WashingCenterActivity.class) ;
+                toWashingCentre = new Intent(WashingPage.this , AppointmentsActivity.class) ;
                 startActivity(toWashingCentre) ;
 
             }
