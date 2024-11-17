@@ -89,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mobileNoSignUp_EditText" />
 
         <EditText
-            android:id="@+id/usernameSignUp_EditText"
+            android:id="@+id/addressSignUp_EditText"
             android:layout_width="360dp"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
@@ -126,7 +126,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameSignUp_EditText" />
+            app:layout_constraintTop_toBottomOf="@id/addressSignUp_EditText" />
 
         <EditText
             android:id="@+id/confirmPasswordSignUp_EditText"

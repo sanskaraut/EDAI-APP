@@ -13,6 +13,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <EditText
+            android:id="@+id/addressSignUp_EditText"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_shape1"
+            android:drawableStart="@drawable/profile_icon"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/cardview_dark_background"
+            android:ems="10"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailSignUp_EditText" />
+
         <TextView
             android:id="@+id/signUp_TextView"
             android:layout_width="364dp"
@@ -89,10 +109,9 @@
             app:layout_constraintTop_toBottomOf="@+id/mobileNoSignUp_EditText" />
 
         <EditText
-            android:id="@+id/usernameSignUp_EditText"
+            android:id="@+id/addressSignUp_EditText"
             android:layout_width="360dp"
             android:layout_height="60dp"
-            android:layout_marginTop="50dp"
             android:autofillHints=""
             android:background="@drawable/edit_shape1"
             android:drawableStart="@drawable/profile_icon"
@@ -104,15 +123,16 @@
             android:padding="20dp"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintHorizontal_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailSignUp_EditText" />
+            tools:layout_editor_absoluteY="565dp" />
 
         <EditText
             android:id="@+id/passwordSignUp_EditText"
             android:layout_width="360dp"
             android:layout_height="60dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
             android:autofillHints=""
             android:background="@drawable/edit_shape1"
             android:drawableStart="@drawable/password"
@@ -123,10 +143,8 @@
             android:inputType="textPassword"
             android:padding="20dp"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameSignUp_EditText" />
+            app:layout_constraintTop_toBottomOf="@+id/addressSignUp_EditText" />
 
         <EditText
             android:id="@+id/confirmPasswordSignUp_EditText"

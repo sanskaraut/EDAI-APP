@@ -15,13 +15,14 @@ public class User {
     private String panCardImage;
     private String panCardNumber;
     private String profilePhoto;
+    private String role;
+    private String address;
     private Integer fuelExpense;
     private Integer tollFineExpense;
     private Integer maintenanceExpense;
     private Integer miscellaneousExpense;
     private Integer totalCurrentMonthExpense;
     private Integer totalExpense;
-    private String role;
 
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public User() {
@@ -47,6 +48,7 @@ public class User {
         this.totalCurrentMonthExpense = 0;
         this.totalExpense = 0;
         this.role = "user";
+        this.address = null;
     }
 
     // Getters and Setters for all fields
@@ -186,6 +188,13 @@ public class User {
     }
     public String getRole() {
         return role;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

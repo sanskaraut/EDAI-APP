@@ -2,7 +2,6 @@ package com.cscorner.autohub;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -41,7 +39,7 @@ public class SignupActivityOwner extends AppCompatActivity {
         EditText nameEditText = findViewById(R.id.nameSignUp_EditText);
         EditText mobileNoEditText = findViewById(R.id.mobileNoSignUp_EditText);
         EditText emailEditText = findViewById(R.id.emailSignUp_EditText);
-        EditText usernameEditText = findViewById(R.id.usernameSignUp_EditText);
+        EditText usernameEditText = findViewById(R.id.addressSignUp_EditText);
         EditText passwordEditText = findViewById(R.id.passwordSignUp_EditText);
         EditText confirmPasswordEditText = findViewById(R.id.confirmPasswordSignUp_EditText);
 
@@ -126,6 +124,7 @@ public class SignupActivityOwner extends AppCompatActivity {
                             // Owner registration success, save to Firestore
                             String ownerId = mAuth.getCurrentUser().getUid(); // Get owner ID
                             saveOwnerToFirestore(ownerId, name, username, mobileNo, email);
+                            initializeUserSettings(ownerId);
                         } else {
                             // If registration fails, display a message to the user.
                             Toast.makeText(SignupActivityOwner.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -159,5 +158,15 @@ public class SignupActivityOwner extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void initializeUserSettings(String userId) {
+        // Example: Add an empty expense tracker for the user
+        Map<String, Object> expenseData = new HashMap<>();
+        expenseData.put("fuelExpense", 0);
+        expenseData.put("tollFineExpense", 0);
+        expenseData.put("maintenanceExpense", 0);
+        expenseData.put("miscellaneousExpense", 0);
+        expenseData.put("totalCurrentMonthExpense", 0);
+        expenseData.put("totalExpense", 0);
     }
 }
